@@ -1,0 +1,12 @@
+@import "types/colors";
+
+.footer-container {
+  .text {
+    text-align: center;
+    color: $color-secondary;
+    &:hover {
+      color: $color-hover;
+      cursor: pointer;
+    }
+  }
+}

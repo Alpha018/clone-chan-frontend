@@ -12,13 +12,15 @@ import {ThreadService} from './services/thread-service';
 import {UtilsService} from './services/utils.service';
 import { Page404Component } from './page404/page404.component';
 import {CommentService} from './services/comment.service';
+import {FormatPipe} from './pipe/formatPipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponent,
     BoardComponent,
-    Page404Component
+    Page404Component,
+    FormatPipe
   ],
   imports: [
     BrowserModule,

@@ -162,7 +162,7 @@
         <button class="button-resp btn btn-sm">Responder</button>
 
         <br>
-        <p class="comment-p">{{thread.comment}}</p>
+        <p class="comment-p" [innerHTML]="thread.comment | formatPipe"></p>
 
         <div *ngIf="thread.comments.length !== 0">
           <button class="button-plus btn btn-sm" (click)="getAllComments(thread._id, index)">+</button>
@@ -198,7 +198,7 @@
               </video>
 
               <div class="header-tab-thread">
-                <p class="comment-p">{{commentThread.comment}}</p>
+                <p class="comment-p" [innerHTML]="commentThread.comment | formatPipe"></p>
               </div>
             </div>
           </div>

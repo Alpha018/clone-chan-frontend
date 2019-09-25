@@ -1,0 +1,161 @@
+<div>
+  <div class="text-center padding">
+    <img src="./assets/images/hispachan.png" class="img-fluid"/>
+  </div>
+  <div class="container">
+    <div class="col-12">
+      <div class="card">
+        <h5 class="card-header text-center box-color-header">
+          {{appName}} es un tablón de imágenes anónimo en español (también llamado imageboard o chan) donde cualquiera
+          puede
+          escribir mensajes y compartir imágenes. Está especialmente dedicado a toda la comunidad hispanohablante de
+          internet y no es necesario estar registrado para participar. ¡Lee las Reglas, elige los tablones que más te
+          interesen y participa!
+        </h5>
+        <div class="card-body box-color-content">
+          <div class="table-header-grid">
+
+            <div class="hr-vertical first-section">
+              <h4 class="table-header">SECCIONES</h4>
+              <h6 class="table-body">• Info/Reglas</h6>
+              <h6 class="table-body">• Blog</h6>
+              <h6 class="table-body">• Transparencia</h6>
+              <h6 class="table-body">• Staff</h6>
+              <h6 class="table-body">• Desarrolladores</h6>
+              <h6 class="table-body">• Banners</h6>
+              <h6 class="table-body" (click)="externalUrlWindow('https://github.com/Alpha018/clone-chan-frontend')">• GitHub</h6>
+              <h6 class="table-body">• Contacto</h6>
+            </div>
+
+            <div *ngFor="let boardTitle of boards">
+              <h4 class="table-header">{{boardTitle?._id.toUpperCase()}}</h4>
+              <ng-container *ngFor="let board of boardTitle.board">
+                <h5 class="table-body" (click)="boardClick(board.slug)"><img *ngIf="board.icon" width="20" height="15" style="margin-bottom: 3px" src="{{hostUrl + '/icons/' + board.icon}}"><ng-container *ngIf="!board.icon">•</ng-container> {{board.name}} <span
+                  class="nsfw">{{board.nsfw ? 'nsfw' : ''}}</span></h5>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-responsive-desktop">
+
+    <!--ONLY DESKTOP-->
+    <div class="container box-only-desktop">
+      <div class="row padding-box-row">
+
+        <div class="col-3 padding box-stats left">
+          <div class="card" style="height: 280px">
+            <h5 class="card-header text-center box-color-header">
+              ESTADÍSTICAS
+            </h5>
+            <div class="card-body align-self-center" style="padding-top: 10px">
+              <div class="green">
+                <img src="./assets/images/usuariosonline.png" class="padding"> Online: {{stats?.online}}
+              </div>
+              <div class="normal">
+                <img src="./assets/images/usuarios.png" class="padding"> Annons Hoy: {{stats?.users}}
+              </div>
+              <div class="normal">
+                <img src="./assets/images/posts.png" class="padding" style="margin-right: 10px">
+                Posts: {{stats?.posts}}
+              </div>
+              <div class="text-center" style="margin: 10px 10px">
+                <img src="./assets/images/hispaperro.gif">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 padding">
+          <div class="card">
+            <h5 class="card-header text-center box-color-header">
+              ÚLTIMOS POSTS
+            </h5>
+            <div style="padding: 15px">
+              <ng-container *ngFor="let post of latestPosts">
+                <div class="row card-body latest-post">
+                  <span class="hour">{{post.created_at | date:'shortTime'}}</span>
+                  <span class="slug">/{{post.boardId.slug}}/</span>
+                  <span class="hour">:</span>
+                  <span class="slug-ellipsis">{{post.title}}</span>
+                  <span class="slug">{{'>>'}}</span>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-3 padding right">
+          <div class="card">
+            <h5 class="card-header text-center box-color-header">
+              IMÁGENES ALEATORIAS
+            </h5>
+            <div class="container card-body">
+              <div class="image-padding">
+                <ng-container *ngFor="let image of randomImages">
+                  <ng-container>
+                    <img src="{{hostUrl + '/file/' + image.key}}" class="img-fluid image-padding">
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--ONLY MOBILE-->
+    <div class="container box-only-mobil">
+
+      <div class="col-12 padding">
+        <div class="alert box-color-header card-header text-center box-color-header">
+          <h6 style="margin-bottom: 0">ÚLTIMOS POSTS</h6>
+        </div>
+
+        <div class="border-bottom">
+          <ng-container *ngFor="let post of latestPosts">
+            <div class="row card-body latest-post">
+              <span class="hour">{{post.created_at | date:'shortTime'}}</span>
+              <span class="slug">/{{post.boardId.slug}}/</span>
+              <span class="hour">:</span>
+              <span class="slug-ellipsis">{{post.title}}</span>
+              <span class="slug">{{'>>'}}</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="col-8 mx-auto">
+        <div class="box-stats-responsive">
+          <div class="green align-self-center">
+            <img src="./assets/images/usuariosonline.png" class="padding-responsive"> Online: {{stats?.online}}
+          </div>
+          <div class="normal-b align-self-center">
+            <img src="./assets/images/usuarios.png" class="padding-responsive"> Annons Hoy: {{stats?.users}}
+          </div>
+          <div class="normal-c align-self-center">
+            <img src="./assets/images/posts.png" class="padding-responsive" style="margin-right: 10px">
+            Posts: {{stats?.posts}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="col-12">
+        <p class="footer-text">
+          Si eres menor de 18 años, abandona {{appName}}. Todas las marcas y copyrights en esta página son propiedad de
+          sus
+          respectivos autores. La responsabilidad de los comentarios e imágenes publicadas en {{appName}} corresponde a
+          los
+          usuarios. {{appName}} está dirigido a personas habituadas al humor y la ironía. Nada de lo escrito en este
+          sitio
+          debe ser tomado en serio.</p>
+      </div>
+    </div>
+  </div>
+</div>

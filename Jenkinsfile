@@ -1,25 +1,18 @@
 pipeline {
     agent any
-
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t alphacode/ucn-chan-backend:latest . '
+                sh 'docker build -t ucn-chan-frontend:latest . '
             }
         }
-
-        stage('Test') {
-            steps {
-                sh 'docker run --name ucn-chan-backend alphacode/ucn-chan-backend:latest npm run test'
-            }
-        }
-
         stage('Deploy') {
             when {
                 branch 'dev'
             }
             steps {
-                sh 'docker run --name ucn-chan-backend alphacode/ucn-chan-backend:latest'
+                sh 'docker ps -q --filter "name=ucn-chan-front" | grep -q . && docker stop ucn-chan-front || echo Not Found'
+                sh 'docker run --name ucn-chan-front --rm --net qa-ucn-chan -d -it -p 3000:80 ucn-chan-frontend:QA'
             }
         }
     }

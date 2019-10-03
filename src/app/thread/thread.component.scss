@@ -1,0 +1,25 @@
+@import "../types/colors";
+
+.form-thread {
+  .form-style {
+    display: grid;
+    grid-template-columns: 80px 230px 60px;
+    grid-auto-rows: 36px 145px 36px;
+    grid-gap: 10px;
+    justify-content: center;
+    align-content: start;
+    padding-right: 50px;
+  }
+
+  .header-box-response {
+    font-size: 95%;
+    line-height: 140%;
+    border: 1px solid $color-box-stats-normal;
+    background: $color-response-box-header;
+    border-radius: 5px;
+
+    .span-tab {
+      color: $color-box-body;
+    }
+  }
+}

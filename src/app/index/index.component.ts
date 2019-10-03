@@ -32,6 +32,7 @@ export class IndexComponent implements OnInit {
     });
     this.apiService.getLatestPost().subscribe((data: any) => {
       this.latestPosts = data.threads;
+      console.log(this.latestPosts);
     });
     this.apiService.getRandomImages().subscribe((data: any) => {
       this.randomImages = data.images;
@@ -39,7 +40,7 @@ export class IndexComponent implements OnInit {
   }
 
   boardClick(slug: string) {
-    this.router.navigate([`board/${slug}`]);
+    return this.router.navigate([`board/${slug}`]);
   }
 
   externalUrlWindow(url: string) {

@@ -13,6 +13,7 @@ import {UtilsService} from './services/utils.service';
 import { Page404Component } from './page404/page404.component';
 import {CommentService} from './services/comment.service';
 import {FormatPipe} from './pipe/formatPipe';
+import { ThreadComponent } from './thread/thread.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {FormatPipe} from './pipe/formatPipe';
     routingComponent,
     BoardComponent,
     Page404Component,
-    FormatPipe
+    FormatPipe,
+    ThreadComponent
   ],
   imports: [
     BrowserModule,

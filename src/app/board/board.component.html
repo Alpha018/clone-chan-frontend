@@ -56,7 +56,7 @@
     <ng-container *ngFor="let board of boards">
       <span class="span-separator"> [ </span>
       <ng-container *ngFor="let data of board.board; let last = last">
-        <span class="span-tab" (click)="boardClick(data.slug)">{{data.slug.toLowerCase()}}</span>
+        <span class="span-tab" [routerLink]="['/board/' + data.slug]">{{data.slug.toLowerCase()}}</span>
         <span class="span-separator" *ngIf="!last"> / </span>
       </ng-container>
       <span class="span-separator"> ] </span>
@@ -155,11 +155,11 @@
         <span class="span-title">{{thread.title}}</span>
         <span class="span-author">{{thread.option}}</span>
         <span class="span-date">{{thread.created_at | date : 'dd/MM/yyyy HH:mm': 'UTC' }}</span>
-        <span class="span-copy">/#/</span>
+        <span class="span-copy" [routerLink]="['/thread/' + thread.threadId]">/#/</span>
         <span class="span-copy"
               (click)="showResponseForm(formResponse, thread.threadId.toString(), thread.threadId.toString())">{{thread.threadId}}</span>
         <span class="span-copy">[X]</span>
-        <button class="button-resp btn btn-sm">Responder</button>
+        <button class="button-resp btn btn-sm" [routerLink]="['/thread/' + thread.threadId]">Responder</button>
 
         <br>
         <p class="comment-p" [innerHTML]="thread.comment | formatPipe"></p>
@@ -177,7 +177,7 @@
             <div class="card-header header">
               <span class="span-author">{{commentThread.option}}</span>
               <span class="span-date">{{commentThread.created_at | date : 'dd/MM/yyyy HH:mm': 'UTC' }}</span>
-              <span class="span-copy">/#/</span>
+              <span class="span-copy" [routerLink]="['/thread/' + thread.threadId + '/' + commentThread.commentId]">/#/</span>
               <span class="span-copy"
                     (click)="showResponseForm(formResponse, commentThread.commentId.toString(), thread.threadId.toString())">{{commentThread.commentId}}</span>
               <span class="span-copy">[X]</span>

@@ -77,10 +77,10 @@
               <ng-container *ngFor="let post of latestPosts">
                 <div class="row card-body latest-post">
                   <span class="hour">{{post.created_at | date:'shortTime'}}</span>
-                  <span class="slug">/{{post.boardId.slug}}/</span>
+                  <span class="slug" [routerLink]="['/thread/' + post.threadId]">/{{post.boardId.slug}}/</span>
                   <span class="hour">:</span>
-                  <span class="slug-ellipsis">{{post.title}}</span>
-                  <span class="slug">{{'>>'}}</span>
+                  <span class="slug-ellipsis" [routerLink]="['/thread/' + post.threadId]">{{post.title}}</span>
+                  <span class="slug" [routerLink]="['/thread/' + post.threadId]">{{'>>'}}</span>
                 </div>
               </ng-container>
             </div>
@@ -119,10 +119,10 @@
           <ng-container *ngFor="let post of latestPosts">
             <div class="row card-body latest-post">
               <span class="hour">{{post.created_at | date:'shortTime'}}</span>
-              <span class="slug">/{{post.boardId.slug}}/</span>
+              <span class="slug" [routerLink]="['/thread/' + post.threadId]">/{{post.boardId.slug}}/</span>
               <span class="hour">:</span>
-              <span class="slug-ellipsis">{{post.title}}</span>
-              <span class="slug">{{'>>'}}</span>
+              <span class="slug-ellipsis" [routerLink]="['/thread/' + post.threadId]">{{post.title}}</span>
+              <span class="slug" [routerLink]="['/thread/' + post.threadId]">{{'>>'}}</span>
             </div>
           </ng-container>
         </div>

@@ -297,6 +297,10 @@
           padding: 0;
           background: $color-box-header;
         }
+
+        .selected {
+          background: $color-box-selected;
+        }
       }
     }
   }

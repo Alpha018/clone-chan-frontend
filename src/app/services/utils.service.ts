@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {File} from '../types/types';
 import {environment} from '../../environments/environment';
 
 
@@ -19,6 +18,17 @@ export class UtilsService {
       return `${data.substring(0, selectionStart)}${this.splice(text, (text.length / 2), 0, select)}${data.substring(selectionEnd, data.length)}`;
     }
     return `${data}${text}`;
+  }
+
+  public goTop(window) {
+    const scrollToTop = window.setInterval(() => {
+      const pos = window.pageYOffset;
+      if (pos > 0) {
+        window.scrollTo(0, pos - 20);
+      } else {
+        window.clearInterval(scrollToTop);
+      }
+    }, 5);
   }
 
   public initImage(target) {

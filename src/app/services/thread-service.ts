@@ -34,6 +34,20 @@ export class ThreadService {
     );
   }
 
+  getThreadCommentById(id: string) {
+    return this.httpClient.get(`${this.url}/threadById`, {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      }),
+      params: {
+        id,
+      }
+    }).pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
+  }
+
   errorHandl(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

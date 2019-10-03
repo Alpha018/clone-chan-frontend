@@ -8,6 +8,9 @@ export class FormatPipe implements PipeTransform {
   constructor(private domSanitizer: DomSanitizer) {}
 
   transform(text: string): SafeHtml {
+    if (!text) {
+      return text;
+    }
     let data = text;
     data = this.replaceGreenText(data);
     data = this.replaceStrikethroughText(data);

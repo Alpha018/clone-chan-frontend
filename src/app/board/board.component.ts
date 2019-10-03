@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {BoardService} from '../services/board-service';
-import {Board, Boards, Comment, File, PaginateThread, RequestComment, RequestThread, ResponseAllComments, Thread} from '../types/types';
+import {Board, Boards, PaginateThread, RequestComment, RequestThread, ResponseAllComments} from '../types/types';
 import {ThreadService} from '../services/thread-service';
 import {environment} from '../../environments/environment';
 import {UtilsService} from '../services/utils.service';
@@ -131,10 +131,6 @@ export class BoardComponent implements OnInit {
       return;
     }
     this.threadService.schema.get('file').setValue(null);
-  }
-
-  boardClick(slug: string) {
-    this.router.navigate([`board/${slug}`]);
   }
 
   showResponseForm(target, id: string, idThread: string) {

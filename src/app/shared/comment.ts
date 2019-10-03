@@ -1,8 +1,5 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Schema } from './schema';
-import {RequestComment, RequestThread} from '../types/types';
-import {HttpHeaders} from '@angular/common/http';
-import {catchError, retry} from 'rxjs/operators';
 
 export class Comment extends Schema {
   comment: string;

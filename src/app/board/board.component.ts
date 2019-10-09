@@ -28,6 +28,7 @@ export class BoardComponent implements OnInit {
   responseId: string;
 
   threads: PaginateThread;
+  threadsNumberArray: number[];
 
   constructor(
     private route: ActivatedRoute,
@@ -64,6 +65,7 @@ export class BoardComponent implements OnInit {
 
       this.boardService.getThreadsPaginate(this.page, this.boardData._id).subscribe((threads: PaginateThread) => {
         this.threads = threads;
+        this.threadsNumberArray = Array(this.threads.totalPages).fill(0).map((x, i) => i);
       });
     });
 

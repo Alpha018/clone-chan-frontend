@@ -280,8 +280,8 @@
       flex-direction: column;
 
       .box-response {
-        min-width: 30%;
-        max-width: 70%;
+        min-width: 320px;
+        max-width: 50%;
         border: 1px solid $color-box-stats-normal;
         margin-bottom: 15px;
         margin-top: 15px;
@@ -336,6 +336,36 @@
 
     .span-tab {
       color: $color-box-body;
+    }
+  }
+}
+
+.pagination-custom {
+  margin-top: 20px;
+  border: 1px solid #DDBEAB;
+  background: #F2E1D6;
+  padding: 5px 5px 5px 5px;
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+
+  .a-style {
+    background: #F2E1D6;
+    border: none;
+  }
+
+  .a-selected {
+    color: #800000;
+  }
+
+  .next-prev-button {
+    border: 1px solid #DDBEAB;
+    border-radius: 3px;
+    background: #C74343;
+    color: #FFFFEE;
+    &:hover {
+      color: #FFFFEE;
+      background: $color-hover;
     }
   }
 }

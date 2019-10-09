@@ -13,6 +13,7 @@ export class FormatPipe implements PipeTransform {
     }
     let data = text;
     data = this.replaceGreenText(data);
+    data = this.replaceRedArrowText(data);
     data = this.replaceStrikethroughText(data);
     data = this.replaceBoldText(data);
     data = this.replaceCursiveText(data);
@@ -74,10 +75,22 @@ export class FormatPipe implements PipeTransform {
   }
 
   replaceGreenText(data: string) {
-    const index = this.searchIndexFromRegexp(data, /[>]{1}[^\d>\\][^\n\\]+/g);
+    const index = this.searchIndexFromRegexp(data, /[>][^\d>\\][^\n\\]+/g);
     let counter = 0;
     index.forEach((startEnd) => {
       data = [data.slice(0, startEnd.start + counter), '<span style="color: #1A7D24">', data.slice(startEnd.start + counter)].join('');
+      counter = counter + 30;
+      data = [data.slice(0, startEnd.end + counter), '</span>', data.slice(startEnd.end + counter)].join('');
+      counter = counter + 6;
+    });
+    return data;
+  }
+
+  replaceRedArrowText(data: string) {
+    const index = this.searchIndexFromRegexp(data, /[<][^\d>\\][^\n\\]+/g);
+    let counter = 0;
+    index.forEach((startEnd) => {
+      data = [data.slice(0, startEnd.start + counter), '<span style="color: #DA5364">', data.slice(startEnd.start + counter)].join('');
       counter = counter + 30;
       data = [data.slice(0, startEnd.end + counter), '</span>', data.slice(startEnd.end + counter)].join('');
       counter = counter + 6;

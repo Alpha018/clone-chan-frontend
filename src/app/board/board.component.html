@@ -177,7 +177,8 @@
             <div class="card-header header">
               <span class="span-author">{{commentThread.option}}</span>
               <span class="span-date">{{commentThread.created_at | date : 'dd/MM/yyyy HH:mm': 'UTC' }}</span>
-              <span class="span-copy" [routerLink]="['/thread/' + thread.threadId + '/' + commentThread.commentId]">/#/</span>
+              <span class="span-copy"
+                    [routerLink]="['/thread/' + thread.threadId + '/' + commentThread.commentId]">/#/</span>
               <span class="span-copy"
                     (click)="showResponseForm(formResponse, commentThread.commentId.toString(), thread.threadId.toString())">{{commentThread.commentId}}</span>
               <span class="span-copy">[X]</span>
@@ -207,4 +208,24 @@
     </div>
     <hr class="hr">
   </ng-container>
+  <div>
+    <nav aria-label="...">
+      <ul class="pagination pagination-sm">
+        <div class="pagination-custom">
+          <li class="page-item" *ngIf="threads.page === 0" ><a class="page-link a-style next-prev-button"
+                                                              [routerLink]="['/board/' + boardData.slug + '/'+ threads.prevPage]"><<</a>
+          </li>
+          <ng-container *ngFor="let i of threadsNumberArray">
+            <li class="page-item disabled" *ngIf="(i + 1) === threads.page">
+              <a class="page-link a-style a-selected" tabindex="-1">{{i + 1}}</a>
+            </li>
+            <li class="page-item" *ngIf="(i + 1) !== threads.page" [routerLink]="['/board/' + boardData.slug + '/'+ (i + 1)]"><a
+              class="page-link a-style">{{i + 1}}</a></li>
+          </ng-container>
+          <li class="page-item" *ngIf="(threads.page + 1) === threads.totalPages"><a class="page-link a-style next-prev-button"
+                                   [routerLink]="['/board/' + boardData.slug + '/'+ threads.nextPage]">>></a></li>
+        </div>
+      </ul>
+    </nav>
+  </div>
 </div>

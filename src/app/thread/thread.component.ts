@@ -11,12 +11,12 @@ import {environment} from '../../environments/environment';
 @Component({
   selector: 'app-thread',
   templateUrl: './thread.component.html',
-  styleUrls: ['../board/board.component.scss', './thread.component.scss']
+  styleUrls: ['./thread.component.scss']
 })
 export class ThreadComponent implements OnInit {
 
-  private readonly idParam: string;
-  private reference: string;
+  readonly idParam: string;
+  reference: string;
   threadData: Thread;
   boards: Boards[];
   hostUrl: string = environment.baseUrl;

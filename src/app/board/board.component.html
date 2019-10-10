@@ -50,9 +50,9 @@
 
 <div class="header-tabs">
   <div class="alert alert-primary header-box-tabs">
-    <span class="span-tab" routerLink="/">Inicio</span>
+    <span class="span-tab" [routerLink]="['/']">Inicio</span>
     <span class="span-separator"> / </span>
-    <span class="span-tab">Reglas</span>
+    <span class="span-tab" [routerLink]="['/rules']">Reglas</span>
     <ng-container *ngFor="let board of boards">
       <span class="span-separator"> [ </span>
       <ng-container *ngFor="let data of board.board; let last = last">
@@ -212,18 +212,18 @@
     <nav aria-label="...">
       <ul class="pagination pagination-sm">
         <div class="pagination-custom">
-          <li class="page-item" *ngIf="threads.page === 0" ><a class="page-link a-style next-prev-button"
-                                                              [routerLink]="['/board/' + boardData.slug + '/'+ threads.prevPage]"><<</a>
+          <li class="page-item" *ngIf="threads?.page === 0" ><a class="page-link a-style next-prev-button"
+                                                              [routerLink]="['/board/' + boardData.slug + '/'+ threads?.prevPage]"><<</a>
           </li>
           <ng-container *ngFor="let i of threadsNumberArray">
-            <li class="page-item disabled" *ngIf="(i + 1) === threads.page">
+            <li class="page-item disabled" *ngIf="(i + 1) === threads?.page">
               <a class="page-link a-style a-selected" tabindex="-1">{{i + 1}}</a>
             </li>
-            <li class="page-item" *ngIf="(i + 1) !== threads.page" [routerLink]="['/board/' + boardData.slug + '/'+ (i + 1)]"><a
+            <li class="page-item" *ngIf="(i + 1) !== threads?.page" [routerLink]="['/board/' + boardData.slug + '/'+ (i + 1)]"><a
               class="page-link a-style">{{i + 1}}</a></li>
           </ng-container>
-          <li class="page-item" *ngIf="(threads.page + 1) === threads.totalPages"><a class="page-link a-style next-prev-button"
-                                   [routerLink]="['/board/' + boardData.slug + '/'+ threads.nextPage]">>></a></li>
+          <li class="page-item" *ngIf="(threads?.page + 1) === threads?.totalPages"><a class="page-link a-style next-prev-button"
+                                   [routerLink]="['/board/' + boardData.slug + '/'+ threads?.nextPage]">>></a></li>
         </div>
       </ul>
     </nav>

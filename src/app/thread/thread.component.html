@@ -1,8 +1,8 @@
 <div class="header-tabs">
   <div class="alert alert-primary header-box-tabs">
-    <span class="span-tab" routerLink="/">Inicio</span>
+    <span class="span-tab" [routerLink]="['/']">Inicio</span>
     <span class="span-separator"> / </span>
-    <span class="span-tab">Reglas</span>
+    <span class="span-tab" [routerLink]="['/rules']">Reglas</span>
     <ng-container *ngFor="let board of boards">
       <span class="span-separator"> [ </span>
       <ng-container *ngFor="let data of board.board; let last = last">

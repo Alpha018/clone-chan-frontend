@@ -14,6 +14,10 @@ import { Page404Component } from './page404/page404.component';
 import {CommentService} from './services/comment.service';
 import {FormatPipe} from './pipe/formatPipe';
 import { ThreadComponent } from './thread/thread.component';
+import { InfoRulesComponent } from './info-rules/info-rules.component';
+import { BlogComponent } from './blog/blog.component';
+import { DevBlogComponent } from './dev-blog/dev-blog.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { ThreadComponent } from './thread/thread.component';
     BoardComponent,
     Page404Component,
     FormatPipe,
-    ThreadComponent
+    ThreadComponent,
+    InfoRulesComponent,
+    BlogComponent,
+    DevBlogComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -66,6 +66,15 @@ export class UtilsService {
     }
   }
 
+  public scalingImage(dimension: string, percentage: number) {
+    const array = dimension.split('X');
+
+    return {
+      width: ((parseInt(array[0], 10) * percentage) / 100),
+      height: ((parseInt(array[1], 10) * percentage) / 100),
+    };
+  }
+
   public splice(text: string, start: number, rem: number, insert: string) {
     return text.slice(0, start) + insert + text.slice(start + Math.abs(rem));
   }

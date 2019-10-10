@@ -3,16 +3,16 @@
   <div class="container" align="center">
     <div class="col-12">
       <div class="footer-container">
-        <span class="text">Inicio</span>
+        <span class="text" [routerLink]="['/']">Inicio</span>
         <span> | </span>
-        <span class="text">Información</span>
+        <span class="text" [routerLink]="['/rules']">Información</span>
         <span> | </span>
-        <span class="text">Contacto</span>
+        <span class="text" [routerLink]="['/contact']">Contacto</span>
       </div>
       <div class="col-12">
         <div class="footer-container">
-          <span class="text">{{appName}} </span>
-          <span style="text-align: center"> © {{ today | date:'yyyy'}}</span>
+          <span class="text" [routerLink]="['/']">{{appName}} </span>
+          <span style="text-align: center"> {{ today | date:'yyyy'}}</span>
         </div>
       </div>
     </div>

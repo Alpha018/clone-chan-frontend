@@ -17,14 +17,14 @@
 
             <div class="hr-vertical first-section">
               <h4 class="table-header">SECCIONES</h4>
-              <h6 class="table-body">• Info/Reglas</h6>
-              <h6 class="table-body">• Blog</h6>
-              <h6 class="table-body">• Transparencia</h6>
-              <h6 class="table-body">• Staff</h6>
-              <h6 class="table-body">• Desarrolladores</h6>
-              <h6 class="table-body">• Banners</h6>
+              <h6 class="table-body" [routerLink]="['/rules']">• Info/Reglas</h6>
+              <h6 class="table-body" [routerLink]="['/blog']">• Blog</h6>
+              <!--<h6 class="table-body">• Transparencia</h6>-->
+              <!--<h6 class="table-body">• Staff</h6>-->
+              <h6 class="table-body" [routerLink]="['/devblog']">• Desarrolladores</h6>
+              <!--<h6 class="table-body">• Banners</h6>-->
               <h6 class="table-body" (click)="externalUrlWindow('https://github.com/Alpha018/clone-chan-frontend')">• GitHub</h6>
-              <h6 class="table-body">• Contacto</h6>
+              <h6 class="table-body" [routerLink]="['/contact']">• Contacto</h6>
             </div>
 
             <div *ngFor="let boardTitle of boards">

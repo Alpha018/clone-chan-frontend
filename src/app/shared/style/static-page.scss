@@ -1,0 +1,66 @@
+@import "./colors";
+
+.body-rules {
+  padding-top: 10px;
+
+  .title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: $color-response-box-header;
+
+    .h1-style-header {
+      font-size: 135%;
+      vertical-align: center;
+      margin-bottom: 0;
+      color: $color-red-box-text;
+    }
+  }
+
+  .box {
+    padding-top: 20px;
+
+    .title-box {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background: $color-box-header;
+      border: 1px solid $color-box-stats-normal;
+
+      .h1-style {
+        margin-bottom: 0;
+        text-align: start;
+        color: $color-secondary;
+        font-size: 135%;
+      }
+    }
+
+    .box-border {
+      background-color: $back-ground-color;
+      border: 1px solid $back-ground-color;
+    }
+
+    .normal-text {
+      color: $color-span;
+    }
+
+    .highlighted-text {
+      color: $color-secondary;
+    }
+
+    .list-item {
+      margin-bottom: 0;
+      color: $color-span;
+    }
+  }
+}
+
+a {
+  color: $color-secondary;
+  text-decoration: none;
+  font-family: sans-serif;
+  line-height: 145%;
+
+  &:hover {
+    color: $color-hover;
+    cursor: pointer;
+  }
+}

@@ -32,7 +32,6 @@ export class IndexComponent implements OnInit {
     });
     this.apiService.getLatestPost().subscribe((data: any) => {
       this.latestPosts = data.threads;
-      console.log(this.latestPosts);
     });
     this.apiService.getRandomImages().subscribe((data: any) => {
       this.randomImages = data.images;

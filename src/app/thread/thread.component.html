@@ -91,7 +91,7 @@
   </div>
   <div class="box-content row">
     <img *ngIf="threadData?.file?.type === 'image'" src="{{hostUrl + '/file/' + threadData.file.key}}"
-         class="image-size img-fluid" (load)="utils.initImage($event.target, threadData?.file.dimension)"
+         class="image-size img-fluid" (load)="utils.initImage($event.target)"
          (click)="utils.resizeImage($event.target)"/>
     <video *ngIf="threadData?.file.type === 'video'" src="{{hostUrl + '/file/' + threadData.file.key}}"
            class="image-size img-fluid" (load)="utils.initImage($event.target)"

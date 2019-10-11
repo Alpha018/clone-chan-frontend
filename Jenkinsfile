@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t ucn-chan-frontend:latest . '
+                sh 'docker build -t ucn-chan-frontend:QA . '
             }
         }
         stage('Deploy') {

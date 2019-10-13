@@ -1,0 +1,153 @@
+<div class="header-tabs">
+  <div class="alert alert-primary header-box-tabs">
+    <span class="span-tab" [routerLink]="['/']">Inicio</span>
+    <span class="span-separator"> / </span>
+    <span class="span-tab" [routerLink]="['/rules']">Reglas</span>
+    <ng-container *ngFor="let board of boards">
+      <span class="span-separator"> [ </span>
+      <ng-container *ngFor="let data of board.board; let last = last">
+        <span class="span-tab" [routerLink]="['/board/' + data.slug]">{{data.slug.toLowerCase()}}</span>
+        <span class="span-separator" *ngIf="!last"> / </span>
+      </ng-container>
+      <span class="span-separator"> ] </span>
+    </ng-container>
+
+  </div>
+  <div class="logo">
+    <h3 class="text-logo">/{{threadData?.boardId.slug}}/ - {{threadData?.boardId.name}}
+      <span class="span-logo" *ngIf="threadData?.boardId.nsfw">NSFW</span>
+    </h3>
+  </div>
+  <hr class="hr">
+  <div class="row">
+    <div class="base-button col-auto mr-auto">
+      [Catálogo]
+    </div>
+    <div class="base-input">
+      <input type="text" placeholder="Buscar hilo..." class="input-form search-thread col-auto" #searchThread>
+    </div>
+  </div>
+  <div class="container">
+    <div class="form-thread">
+      <form [formGroup]="this.commentService.schema" (ngSubmit)="submit()">
+        <div class="form-style">
+          <span class="box-form">Opciones</span>
+          <div>
+            <select style="width: 75px; height: 36px" formControlName="option">
+              <option></option>
+              <option>OP</option>
+              <option>sage</option>
+              <option>noko</option>
+              <option>nokosage</option>
+              <option>OPsage</option>
+            </select>
+
+            <span class="base-button" style="font-weight: bold; padding-left: 15px"
+                  (click)="pushData('\'\'\'\'\'\'', postResponse.selectionStart, postResponse.selectionEnd)">N</span>
+            <span class=""> / </span>
+            <span class="base-button" style="font-style: italic"
+                  (click)="pushData('\'\'\'\'', postResponse.selectionStart, postResponse.selectionEnd)">C</span>
+            <span class=""> / </span>
+            <span class="base-button" style="text-decoration: underline"
+                  (click)="pushData('\_\_\_\_', postResponse.selectionStart, postResponse.selectionEnd)">S</span>
+            <span class=""> / </span>
+            <span class="base-button" style="text-decoration:line-through"
+                  (click)="pushData('\~\~\~\~', postResponse.selectionStart, postResponse.selectionEnd)">T</span>
+          </div>
+          <button type="submit" class="button-send"
+                  [disabled]="isLoad">{{isLoad ? 'Espere' : 'Enviar'}}</button>
+
+
+          <span class="box-form">Post</span>
+          <div class="base-text" style="grid-column-start: 2; grid-column-end: 4">
+          <textarea class="text-area" (keyup)="getShortfall(postResponse.value)" #postResponse required
+                    formControlName="comment"></textarea>
+            <p class="second-text">te quedan {{shortFall}} caracteres</p>
+          </div>
+
+          <span class="box-form">Archivo</span>
+          <input (change)="fileChanged($event)" type="file" class="form-control-file input-file">
+
+        </div>
+      </form>
+    </div>
+    <div class="base-text" style="text-align: center; padding-top: 10px">
+      <span
+        class="second-text">Tipos de archivo: GIF, JPG, MP3, MP4, OGG, PDF, PNG, SWF, WEBM . Tamaño máximo: 50 MB.</span>
+    </div>
+  </div>
+</div>
+
+<div class="box-thread">
+  <hr class="hr">
+  <div class="padding-top">
+    <a target="_blank"
+       href="{{hostUrl + '/file/' + threadData?.file.key}}">{{threadData?.file.fileId + '.' + threadData?.file.nameFileOriginal.split('.').pop()}}</a>
+    <a style="font-weight: bold; padding-left: 5px; padding-right: 5px" target="_blank"
+       href="https://www.google.com/searchbyimage?image_url={{hostUrl + '/file/' + threadData?.file.key}}">[S]</a>
+    <span
+      class="text-span-info">({{threadData?.file.size}}{{threadData?.file.dimension ? ' , ' + threadData?.file.dimension : ''}}
+      , <span class="span-ellipsis">{{threadData?.file.nameFileOriginal}}</span>)</span>
+  </div>
+  <div class="box-content row">
+    <img *ngIf="threadData?.file?.type === 'image'" src="{{hostUrl + '/file/' + threadData.file.key}}"
+         class="image-size img-fluid" (load)="utils.initImage($event.target)"
+         (click)="utils.resizeImage($event.target)"/>
+    <video *ngIf="threadData?.file.type === 'video'" src="{{hostUrl + '/file/' + threadData.file.key}}"
+           class="image-size img-fluid" (load)="utils.initImage($event.target)"
+           (click)="utils.resizeVideo($event.target)">
+    </video>
+
+    <div class="header-tab-thread">
+      <span class="span-title">{{threadData?.title}}</span>
+      <span class="span-author">{{threadData?.option}}</span>
+      <span class="span-date">{{threadData?.created_at | date : 'dd/MM/yyyy HH:mm': 'UTC' }}</span>
+      <span class="span-copy">/#/</span>
+      <span class="span-copy" (click)="putReplicate(threadData.threadId.toString())">{{threadData?.threadId}}</span>
+      <span class="span-copy">[X]</span>
+
+      <br>
+      <p class="comment-p" [innerHTML]="threadData?.comment | formatPipe"></p>
+
+      <div *ngIf="threadData?.comments.length !== 0">
+      <span
+        class="span-stats">R: {{threadData?.countComment}} {{threadData?.countImage !== 0 ? '/ I: ' + threadData?.countImage : ''}} {{threadData?.countVideo !== 0 ? '/ V: ' + threadData?.countVideo : ''}}</span>
+      </div>
+    </div>
+
+    <div class="box-base">
+      <ng-container *ngFor="let commentThread of threadData?.comments">
+        <div class="card box-response">
+          <div [class]="'card-header header' + (reference === commentThread.commentId.toString() ? ' selected' : '')">
+            <span class="span-author">{{commentThread.option}}</span>
+            <span class="span-date">{{commentThread.created_at | date : 'dd/MM/yyyy HH:mm': 'UTC' }}</span>
+            <span class="span-copy">/#/</span>
+            <span class="span-copy"
+                  (click)="putReplicate(commentThread.commentId.toString())">{{commentThread.commentId}}</span>
+            <span class="span-copy">[X]</span>
+
+            <br>
+            <span class="text-span-info"
+                  *ngIf="commentThread.file">({{commentThread.file.size}}{{commentThread.file.dimension ? ' , ' + commentThread.file.dimension : ''}}
+              , <span class="span-ellipsis">{{commentThread.file.nameFileOriginal}}</span>)</span>
+          </div>
+
+          <div [class]="'card-body row body' + (reference === commentThread.commentId.toString() ? ' selected' : '')">
+            <img *ngIf="commentThread.file?.type === 'image'" src="{{hostUrl + '/file/' + commentThread.file.key}}"
+                 class="image-size img-fluid" (load)="utils.initImage($event.target)"
+                 (click)="utils.resizeImage($event.target)"/>
+            <video *ngIf="commentThread.file?.type === 'video'" src="{{hostUrl + '/file/' + commentThread.file.key}}"
+                   class="image-size img-fluid" (load)="utils.initImage($event.target)"
+                   (click)="utils.resizeVideo($event.target)">
+            </video>
+
+            <div class="header-tab-thread">
+              <p class="comment-p" [innerHTML]="commentThread.comment | formatPipe"></p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <hr class="hr">
+</div>

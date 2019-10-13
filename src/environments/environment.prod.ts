@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'http://api.qa.ucnchan.org/api',
+  appName: 'CloneChan'
 };

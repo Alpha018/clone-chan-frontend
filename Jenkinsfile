@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t ucn-chan-frontend:QA . '
+                sh 'docker build -t ucn-chan-frontend:Prod . '
             }
         }
         stage('Deploy') {
@@ -11,8 +11,8 @@ pipeline {
                 branch 'dev'
             }
             steps {
-                sh 'docker ps -q --filter "name=ucn-chan-front" | grep -q . && docker stop ucn-chan-front || echo Not Found'
-                sh 'docker run --name ucn-chan-front --rm --net qa-ucn-chan -d -it -p 3000:80 ucn-chan-frontend:QA'
+                sh 'docker ps -q --filter "name=ucn-chan-front-prod" | grep -q . && docker stop ucn-chan-front-prod || echo Not Found'
+                sh 'docker run --name ucn-chan-front-prod --rm --net ucn-chan-prod -d -it -p 3000:80 ucn-chan-frontend:Prod'
             }
         }
     }

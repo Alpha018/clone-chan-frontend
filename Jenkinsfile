@@ -34,6 +34,7 @@ pipeline {
             steps {
                 sh 'docker ps -q --filter "name=ucn-chan-front-prod" | grep -q . && docker stop ucn-chan-front-prod || echo Not Found'
                 sh 'docker run --name ucn-chan-front-prod --rm --net ucn-chan-prod -d -it -p 8000:80 ucn-chan-frontend:Prod'
+
             }
         }
     }

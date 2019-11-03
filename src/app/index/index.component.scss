@@ -80,8 +80,10 @@
   }
 
   .first-section {
-    grid-row-start: 1;
-    grid-row-end: 5;
+    @media (min-width: 720px) {
+      grid-row-start: 1;
+      grid-row-end: 5;
+    }
   }
 }
 

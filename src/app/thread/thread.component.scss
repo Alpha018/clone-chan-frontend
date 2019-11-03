@@ -9,7 +9,23 @@
     grid-gap: 10px;
     justify-content: center;
     align-content: start;
-    padding-right: 50px;
+    @media (min-width: 721px) {
+      padding-right: 50px;
+    }
+    @media (max-width: 720px) {
+      grid-template-columns: 1fr 2fr 1fr;
+    }
+  }
+
+  .option-form {
+    @media (max-width: 720px) {
+      width: 50px;
+    }
+    @media (max-width: 720px) {
+      width: 30px;
+    }
+    width: 75px;
+    height: 36px;
   }
 
   .header-box-response {

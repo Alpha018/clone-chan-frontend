@@ -33,14 +33,16 @@
         <div class="form-style">
           <span class="box-form">Opciones</span>
           <div>
-            <select style="width: 75px; height: 36px" formControlName="option">
-              <option></option>
-              <option>OP</option>
-              <option>sage</option>
-              <option>noko</option>
-              <option>nokosage</option>
-              <option>OPsage</option>
-            </select>
+            <label>
+              <select class="option-form" formControlName="option">
+                <option></option>
+                <option>OP</option>
+                <option>sage</option>
+                <option>noko</option>
+                <option>nokosage</option>
+                <option>OPsage</option>
+              </select>
+            </label>
 
             <span class="base-button" style="font-weight: bold; padding-left: 15px"
                   (click)="pushData('\'\'\'\'\'\'', postResponse.selectionStart, postResponse.selectionEnd)">N</span>
@@ -60,8 +62,10 @@
 
           <span class="box-form">Post</span>
           <div class="base-text" style="grid-column-start: 2; grid-column-end: 4">
-          <textarea class="text-area" (keyup)="getShortfall(postResponse.value)" #postResponse required
-                    formControlName="comment"></textarea>
+            <label>
+              <textarea class="text-area" (keyup)="getShortfall(postResponse.value)" #postResponse required
+                        formControlName="comment"></textarea>
+            </label>
             <p class="second-text">te quedan {{shortFall}} caracteres</p>
           </div>
 

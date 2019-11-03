@@ -91,12 +91,16 @@
 }
 
 .form-style {
+  padding-top: 20px;
   display: grid;
   grid-template-columns: 80px 250px 70px;
   grid-auto-rows: 36px 36px 145px 36px;
   grid-gap: 10px;
   justify-content: center;
   align-content: start;
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
 
   .box-form {
     text-align: center;

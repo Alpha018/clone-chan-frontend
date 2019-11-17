@@ -26,6 +26,16 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this.apiService.getBoards().subscribe((data: any) => {
       this.boards = data.boards;
+      this.boards.sort((a: Boards, b: Boards) => {
+        if (a._id > b._id) {
+          return 1;
+        }
+        if (b._id > a._id) {
+          return -1;
+        }
+        console.log(a);
+        return 0;
+      });
     });
     this.apiService.getStats().subscribe((data: any) => {
       this.stats = data;

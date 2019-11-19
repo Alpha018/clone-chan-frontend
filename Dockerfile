@@ -16,4 +16,4 @@ FROM nginx:alpine
 
 COPY --from=builder /app/dist/* /usr/share/nginx/html/
 
-COPY --from=build /nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /nginx.conf /etc/nginx/conf.d/default.conf
